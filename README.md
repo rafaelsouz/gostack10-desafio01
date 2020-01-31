@@ -12,9 +12,9 @@ Resolução do Desafio 01 do GoStack 🚀
 <h3 align="center"><img src="screenshots/insomnia.png" /></h3>
 <br/>
 
-Resolução do desafio proposto pela <a href='https://rocketseat.com.br' target="_blanck">RocketSeat</a>
+Resolução do desafio proposto pela <a href='https://rocketseat.com.br' target="_blank">RocketSeat</a>
 
-A explicação de como tinha que ser o desafio está <a href='https://github.com/Rocketseat/bootcamp-gostack-desafio-01/blob/master/README.md#desafio-01-conceitos-do-nodejs' target="_blanck">aqui</a>
+A explicação de como tinha que ser o desafio está <a href='https://github.com/Rocketseat/bootcamp-gostack-desafio-01/blob/master/README.md#desafio-01-conceitos-do-nodejs' target="_blank">aqui</a>
 
 Coloquei algumas funções extras, para ser possível editar e excluir as tarefas de um projeto.
 
