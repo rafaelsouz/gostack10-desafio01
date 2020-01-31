@@ -3,12 +3,15 @@ const server = express();
 
 server.use(express.json());
 
-server.use( (req,res,next) => {
+server.use(reqCount)
 
+//Contador de requisições
+function reqCount( req,res,next){
    console.count(`Contagem de requisições`);
    next()
-})
+}
 
+//Verifica se o projeto existe
 function checkProjectExistInArray(req, res, next){
    const { id } = req.params;
 
@@ -19,6 +22,7 @@ function checkProjectExistInArray(req, res, next){
    return next();
 }
 
+//Encontra o projeto pelo o id
 function findProject(id){
    const project = projects.find(p => p.id == id);
 
@@ -28,15 +32,17 @@ function findProject(id){
 const projects = [
    {
       id: "1",
-      title: "Projeto 0",
-      tasks: ["tarefa 0"]
+      title: "AirCnC",
+      tasks: ["Fazer DashBoard"]
    },
 ];
 
+//Lista todos os projetos
 server.get('/projects', (req, res) => {
    res.json(projects)
 });
 
+//Cadastra projeto
 server.post('/projects', (req, res) => {
    const { id, title } = req.body;
 
@@ -45,6 +51,7 @@ server.post('/projects', (req, res) => {
    return res.json(projects)
 });
 
+//Cadastra tarefa ao um projeto
 server.post('/projects/:id/tasks',checkProjectExistInArray ,(req, res) => {
    const { id } = req.params;
    const { title } = req.body;
@@ -56,6 +63,7 @@ server.post('/projects/:id/tasks',checkProjectExistInArray ,(req, res) => {
    return res.json(project);
 })
 
+//Atualiza o titulo de um projeto
 server.put('/projects/:id', checkProjectExistInArray, (req, res) => { 
    const { id } = req.params;
    const { title } = req.body;
@@ -67,6 +75,7 @@ server.put('/projects/:id', checkProjectExistInArray, (req, res) => {
    return res.json(project);
 });
 
+//Delete um projeto pelo o id
 server.delete('/projects/:id', checkProjectExistInArray, (req, res) => {
    const { id } = req.params;
 
@@ -77,6 +86,7 @@ server.delete('/projects/:id', checkProjectExistInArray, (req, res) => {
    return res.send();
 })
 
+//Deleta tarefa pelo o id
 server.delete('/projects/:id/tasks/:idTask',checkProjectExistInArray, (req, res) => {
    const { id, idTask } = req.params;
 
@@ -87,6 +97,7 @@ server.delete('/projects/:id/tasks/:idTask',checkProjectExistInArray, (req, res)
    return res.send();
 })
 
+//Atualiza tarefa pelo o id
 server.put('/projects/:id/tasks/:idTask',checkProjectExistInArray, (req, res) => {
    const { id, idTask } = req.params;
    const { title } = req.body;
@@ -98,6 +109,6 @@ server.put('/projects/:id/tasks/:idTask',checkProjectExistInArray, (req, res) =>
    return res.json(project);
 })
 
-
 const PORT = 3000;
+console.log( `Rodando em localhost:${PORT}`)
 server.listen(PORT)
